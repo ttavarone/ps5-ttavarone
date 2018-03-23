@@ -1,4 +1,4 @@
-
+import java.util.*;
 /**
  * Finds the closest pair of values that are distinct.  Empirically analyses an array
  * of data to find the closest pairs whose different does not equal 0.
@@ -17,7 +17,7 @@ public class ClosestPairs
         double[] A = {15.8, 9.8, 5.5, 7.5, 16.8, 12.0, 10.8, 7.8, 44.0, 23.0, 18.4};
 
         
-        for(int i = 0; i < A.length-2; i++){
+        for(int i = 0; i < A.length-1; i++){
             for(int j = 0; j < A.length-1-i; j++){
                 if(A[j+1] < A[j]){
                     double temp  = A[j+1];
@@ -26,6 +26,8 @@ public class ClosestPairs
                 }
             }
         }
+        
+        System.out.println(Arrays.toString(A));
 
         int[] valueChecked = new int[A.length];
         for(int i = 0; i < valueChecked.length; i++){valueChecked[i] = 0;}
@@ -36,28 +38,12 @@ public class ClosestPairs
         double last = 0.0;
         int comparisonCount = 0;
         //makes sure that we do not exceed array bounds
-        while( r > 1 && l < A.length){
-            // if the abs value of A[l] & A[r] is less than lowest diff, set it
-            //also makes sure it is not going to be zero, the values have to be distinct
-            valueChecked[l]+=2;
-            valueChecked[r]+=2;
-            //comparisonCount++;
-            if(Math.abs(A[l]-A[r]) < smallDiff && Math.abs(A[l]-A[r]) > 0){
-                //sets the small diff to the best diff found
-                smallDiff = Math.abs(A[l] - A[r]);
-                first = A[l]; //saves the 
-                last  = A[r];
-
+        for(int i = 0; i < A.length-1; i++){
+            if(Math.abs(A[i]-A[i+1]) < smallDiff){
+                smallDiff = Math.abs(A[i]-A[i+1]);
+                first = A[i];
+                last = A[i+1];
             }
-            //comparisonCount++;
-            if(Math.abs(A[l]-A[r]) > smallDiff){ r--;  }//look at smaller values
-            else{
-                l++;// look at bigger values
-
-            }
-            // resets r if l is not finished searching
-            
-            
         }
         System.out.println("Solutions:");
         System.out.println(first);
