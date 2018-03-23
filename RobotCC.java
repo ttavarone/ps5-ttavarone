@@ -1,5 +1,3 @@
-import java.io.PrintWriter;
-import java.io.FileNotFoundException;
 /**
  * Recursive Exhaustive Search of Robot Coin Collection Problem
  *
@@ -62,7 +60,7 @@ public class RobotCC
         }    
     }
 
-    public static void main(String[] args) throws FileNotFoundException
+    public static void main(String[] args)
     {
         int n = 8;
         int[][] A = new int[n][n];
